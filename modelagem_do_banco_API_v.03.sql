@@ -57,7 +57,7 @@ CREATE TABLE `energia` (
 
 -- Table: fato_conta_agua
 CREATE TABLE `fato_conta_agua` (
-    `fato_agua_id` int   NOT NULL,
+    `fato_agua_id` int AUTO_INCREMENT  NOT NULL,
     `contr_id` int   NOT NULL,
     `agua_id` int   NOT NULL,
     `unid_cli_id` int   NOT NULL,
@@ -69,7 +69,7 @@ CREATE TABLE `fato_conta_agua` (
 
 -- Table: fato_conta_energia
 CREATE TABLE `fato_conta_energia` (
-    `fato_energ_id` int   NOT NULL,
+    `fato_energ_id` int AUTO_INCREMENT  NOT NULL,
     `energ_id` int   NOT NULL,
     `unid_cli_id` int   NOT NULL,
     `temp_id` int   NOT NULL,
@@ -127,5 +127,6 @@ ALTER TABLE `fato_conta_energia` ADD CONSTRAINT `fato_conta_energia_tempo` FOREI
 -- Reference: fato_conta_energia_unidade_cliente (table: fato_conta_energia)
 ALTER TABLE `fato_conta_energia` ADD CONSTRAINT `fato_conta_energia_unidade_cliente` FOREIGN KEY `fato_conta_energia_unidade_cliente` (`unid_cli_id`)
     REFERENCES `unidade_cliente` (`unid_cli_id`);
+    
     
 
