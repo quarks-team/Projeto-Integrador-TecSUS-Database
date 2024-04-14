@@ -50,7 +50,7 @@ CREATE TABLE `energia` (
     `total_conta_ener` float(8,2)  NOT NULL,
     `fornecedor` varchar(30)  NOT NULL,
     `num_medidor` varchar(30),
-    `cosumo_total` float(8,2),
+    `consumo_total` float(8,2),
     `planta_ener` varchar(2)  NOT NULL,
     CONSTRAINT `energia_pk` PRIMARY KEY (`energ_id`)
 );
