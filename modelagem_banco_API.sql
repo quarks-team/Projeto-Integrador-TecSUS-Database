@@ -76,11 +76,11 @@ CREATE TABLE `energia_grupo_b` (
 
 -- Table: fato_conta_agua
 CREATE TABLE `fato_conta_agua` (
-    `contr_id` int  NULL,
-    `agua_id` int  NULL,
-    `unid_cli_id` int  NULL,
-    `temp_id` int  NULL,
-    `local_planta_id` int  NULL,
+    `contr_id` int,
+    `agua_id` int,
+    `unid_cli_id` int,
+    `temp_id` int,
+    `local_planta_id` int,
     `total_conta_agua` float(8,2)  NULL,
     `total_consumo_agua` float(8,2)  NULL,
     `total_consumo_esgoto` float(8,2)  NULL,
@@ -91,12 +91,12 @@ CREATE TABLE `fato_conta_agua` (
 
 -- Table: fato_conta_energia
 CREATE TABLE `fato_conta_energia` (
-    `unid_cli_id` int  NULL,
-    `energ_a_id` int  NULL,
-    `energ_b_id` int  NULL,
-    `temp_id` int  NULL,
-    `contr_ener_id` int  NULL,
-    `local_planta_id` int  NULL,
+    `unid_cli_id` int,
+    `energ_a_id` int,
+    `energ_b_id` int,
+    `temp_id` int,
+    `contr_ener_id` int,
+    `local_planta_id` int,
     `total_conta_energ` float(8,2)  NULL,
     `consu_total_b` float(8,2)  NULL,
     `consu_total_a` float(8,2)  NULL,
