@@ -7,14 +7,14 @@ CREATE TABLE `conta_agua` (
     `conta_agua_id` int  NOT NULL AUTO_INCREMENT,
     `codigo_rgi` int  NOT NULL,
     `agua_conta_mes` date  NOT NULL,
-    `hidrometro` varchar(30)  NOT NULL,
-    `consumo_agua` float(8,2)  NOT NULL,
-    `consu_esgo` float(8,2)  NOT NULL,
-    `valor_agua` float(8,2)  NOT NULL,
-    `valor_esgo` float(8,2)  NOT NULL,
-    `total_conta_agua` float(8,2)  NOT NULL,
-    `planta_agua` varchar(2)  NOT NULL,
-    `fornecedor` varchar(100)  NOT NULL,
+    `hidrometro` varchar(30) ,
+    `consumo_agua` float(8,2) ,
+    `consumo_esgoto` float(8,2) ,
+    `valor_agua` float(8,2) ,
+    `valor_esgoto` float(8,2) ,
+    `total_conta_agua` float(8,2) ,
+    `planta_agua` varchar(2) ,
+    `fornecedor` varchar(100) ,
     CONSTRAINT `conta_agua_pk` PRIMARY KEY (`conta_agua_id`)
 );
 
@@ -22,21 +22,21 @@ CREATE TABLE `conta_agua` (
 CREATE TABLE `conta_energia_grupo_a` (
     `conta_energia_a_id` int  NOT NULL AUTO_INCREMENT,
     `energia_conta_mes` date  NOT NULL,
-    `total_conta_energia` float(8,2)  NOT NULL,
-    `numero_instalacao` varchar(50)  NOT NULL,
-    `fornecedor` varchar(100)  NOT NULL,
-    `numero_medidor` varchar(50)  NOT NULL,
-    `planta_energia` varchar(2)  NOT NULL,
-    `demanda_pt` float(8,2)  NOT NULL,
-    `demanda_fp_cap` float(8,2)  NOT NULL,
-    `demanda_fp_ind` float(8,2)  NOT NULL,
-    `consumo_pt_vd` float(8,2)  NOT NULL,
-    `consumo_fp_cap_vd` float(8,2)  NOT NULL,
-    `consumo_fp_ind_vd` float(8,2)  NOT NULL,
-    `consumo_a_pt_tusd` float(8,2)  NOT NULL,
-    `consumo_a_pt_te` float(8,2)  NOT NULL,
-    `consumo_a_fp_tusd` float(8,2)  NOT NULL,
-    `consumo_a_fp_te` float(8,2)  NOT NULL,
+    `total_conta_energia` float(8,2) ,
+    `numero_instalacao` varchar(50) ,
+    `fornecedor` varchar(100) ,
+    `numero_medidor` varchar(50) ,
+    `planta_energia` varchar(2) ,
+    `demanda_pt` float(8,2) ,
+    `demanda_fp_cap` float(8,2) ,
+    `demanda_fp_ind` float(8,2) ,
+    `consumo_pt_vd` float(8,2) ,
+    `consumo_fp_cap_vd` float(8,2) ,
+    `consumo_fp_ind_vd` float(8,2) ,
+    `consumo_a_pt_tusd` float(8,2) ,
+    `consumo_a_pt_te` float(8,2) ,
+    `consumo_a_fp_tusd` float(8,2) ,
+    `consumo_a_fp_te` float(8,2) ,
     CONSTRAINT `conta_energia_grupo_a_pk` PRIMARY KEY (`conta_energia_a_id`)
 );
 
@@ -44,35 +44,35 @@ CREATE TABLE `conta_energia_grupo_a` (
 CREATE TABLE `conta_energia_grupo_b` (
     `conta_energia_b_id` int  NOT NULL,
     `energia_conta_mes` date  NOT NULL,
-    `total_conta_energia` float(8,2)  NOT NULL,
+    `total_conta_energia` float(8,2) ,
     `numero_instalacao` varchar(50)  NOT NULL,
-    `fornecedor` varchar(100)  NOT NULL,
-    `numero_medidor` varchar(50)  NOT NULL,
-    `planta_energia` varchar(2)  NOT NULL,
-    `uso_sist_distr` float(8,2)  NOT NULL,
-    `uso_sist_distr_custo` float(8,2)  NOT NULL,
+    `fornecedor` varchar(100) ,
+    `numero_medidor` varchar(50) ,
+    `planta_energia` varchar(2) ,
+    `uso_sist_distr` float(8,2) ,
+    `uso_sist_distr_custo` float(8,2) ,
     CONSTRAINT `conta_energia_grupo_b_pk` PRIMARY KEY (`conta_energia_b_id`)
 );
 
 -- Table: contrato_agua
 CREATE TABLE `contrato_agua` (
     `contrato_agua_id` int  NOT NULL AUTO_INCREMENT,
-    `nome_contrato_agua` varchar(100)  UNSIGNED NOT NULL,
-    `codigo_rgi` varchar(50)  UNSIGNED NOT NULL,
-    `hidrometro` varchar(30)  UNSIGNED NOT NULL,
-    `fornecedor_agua` varchar(50)  UNSIGNED NOT NULL,
+    `nome_contrato_agua` varchar(100)  NOT NULL,
+    `codigo_rgi` varchar(50)  NOT NULL,
+    `hidrometro` varchar(30) ,
+    `fornecedor_agua` varchar(50) ,
     CONSTRAINT `contrato_agua_pk` PRIMARY KEY (`contrato_agua_id`)
 );
 
 -- Table: contrato_energia
 CREATE TABLE `contrato_energia` (
     `contrato_energia_id` int  NOT NULL AUTO_INCREMENT,
-    `nome_contrato_ener` varchar(100)  NOT NULL,
-    `fornecedor_energia` varchar(50)  NOT NULL,
-    `numero_medidor` varchar(30)  NOT NULL,
+    `nome_contrato_energia` varchar(100)  NOT NULL,
+    `fornecedor_energia` varchar(50) ,
+    `numero_medidor` varchar(30) ,
     `numero_instalacao` varchar(50)  NOT NULL,
-    `demanda_ponta` double(10,2)  NOT NULL,
-    `demanda_fora_ponta` double(10,2)  NOT NULL,
+    `demanda_ponta` double(10,2) ,
+    `demanda_fora_ponta` double(10,2) ,
     CONSTRAINT `contrato_energia_pk` PRIMARY KEY (`contrato_energia_id`)
 );
 
@@ -83,11 +83,11 @@ CREATE TABLE `fato_conta_agua` (
     `unidade_cliente_id` int  NOT NULL,
     `tempo_id` int  NOT NULL,
     `local_planta_id` int  NOT NULL,
-    `total_conta_agua` float(8,2)  NOT NULL,
-    `total_consumo_agua` float(8,2)  NOT NULL,
-    `total_consumo_esgoto` float(8,2)  NOT NULL,
-    `total_valor_agua` float(8,2)  NOT NULL,
-    `total_valor_esgoto` float(8,2)  NOT NULL,
+    `total_conta_agua` float(8,2) ,
+    `total_consumo_agua` float(8,2) ,
+    `total_consumo_esgoto` float(8,2) ,
+    `total_valor_agua` float(8,2) ,
+    `total_valor_esgoto` float(8,2) ,
     CONSTRAINT `fato_conta_agua_pk` PRIMARY KEY (`contrato_agua_id`,`conta_agua_id`,`tempo_id`,`unidade_cliente_id`,`local_planta_id`)
 );
 
@@ -99,14 +99,14 @@ CREATE TABLE `fato_conta_energia` (
     `tempo_id` int  NOT NULL,
     `contrato_energia_id` int  NOT NULL,
     `local_planta_id` int  NOT NULL,
-    `total_conta_energia` float(8,2)  NOT NULL,
-    `consumo_total_b` float(8,2)  NOT NULL,
-    `consumo_total_a` float(8,2)  NOT NULL,
-    `demanda_pt` float(8,2)  NOT NULL,
-    `demanda_fp_cap` float(8,2)  NOT NULL,
-    `demanda_fp_ind` float(8,2)  NOT NULL,
-    `demanda_ponta` double(10,2)  NOT NULL,
-    `demanda_fora_ponta` double(10,2)  NOT NULL,
+    `total_conta_energia` float(8,2) ,
+    `consumo_total_b` float(8,2) ,
+    `consumo_total_a` float(8,2) ,
+    `demanda_pt` float(8,2) ,
+    `demanda_fp_cap` float(8,2) ,
+    `demanda_fp_ind` float(8,2) ,
+    `demanda_ponta` double(10,2) ,
+    `demanda_fora_ponta` double(10,2) ,
     CONSTRAINT `fato_conta_energia_pk` PRIMARY KEY (`unidade_cliente_id`,`contrato_energia_id`,`tempo_id`,`conta_energia_b_id`,`conta_energia_a_id`,`local_planta_id`)
 );
 
