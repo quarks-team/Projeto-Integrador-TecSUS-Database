@@ -1,4 +1,5 @@
 
+
 insert into fato_conta_energia(energ_id,unid_cli_id,temp_id,mes_ref,contr_ener_id,total_conta_energ) 
 SELECT e.energ_id, u.unid_cli_id, t.temp_id, e.ener_cont_mes AS mes_ref, c.contr_ener_id AS contr_id, 
 SUM(e.total_conta_ener) AS total_conta_energia FROM unidade_cliente u INNER JOIN contrato_energia c 
