@@ -1,10 +1,7 @@
--- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2024-05-11 00:55:50.61
-
 -- tables
 -- Table: conta_agua
 CREATE TABLE `conta_agua` (
-    `conta_agua_id` int  NOT NULL AUTO_INCREMENT,
+    `conta_agua_id` int AUTO_INCREMENT NOT NULL ,
     `codigo_rgi` int  NOT NULL,
     `agua_conta_mes` date  NOT NULL,
     `hidrometro` varchar(30) ,
@@ -20,7 +17,7 @@ CREATE TABLE `conta_agua` (
 
 -- Table: conta_energia_grupo_a
 CREATE TABLE `conta_energia_grupo_a` (
-    `conta_energia_a_id` int  NOT NULL AUTO_INCREMENT,
+    `conta_energia_a_id` int AUTO_INCREMENT NOT NULL,
     `energia_conta_mes` date  NOT NULL,
     `total_conta_energia` float(8,2) ,
     `numero_instalacao` varchar(50) ,
@@ -42,7 +39,7 @@ CREATE TABLE `conta_energia_grupo_a` (
 
 -- Table: conta_energia_grupo_b
 CREATE TABLE `conta_energia_grupo_b` (
-    `conta_energia_b_id` int  NOT NULL,
+    `conta_energia_b_id` int AUTO_INCREMENT NOT NULL,
     `energia_conta_mes` date  NOT NULL,
     `total_conta_energia` float(8,2) ,
     `numero_instalacao` varchar(50)  NOT NULL,
@@ -56,7 +53,7 @@ CREATE TABLE `conta_energia_grupo_b` (
 
 -- Table: contrato_agua
 CREATE TABLE `contrato_agua` (
-    `contrato_agua_id` int  NOT NULL AUTO_INCREMENT,
+    `contrato_agua_id` int AUTO_INCREMENT NOT NULL,
     `nome_contrato_agua` varchar(100)  NOT NULL,
     `codigo_rgi` varchar(50)  NOT NULL,
     `hidrometro` varchar(30) ,
@@ -66,7 +63,7 @@ CREATE TABLE `contrato_agua` (
 
 -- Table: contrato_energia
 CREATE TABLE `contrato_energia` (
-    `contrato_energia_id` int  NOT NULL AUTO_INCREMENT,
+    `contrato_energia_id` int AUTO_INCREMENT NOT NULL,
     `nome_contrato_energia` varchar(100)  NOT NULL,
     `fornecedor_energia` varchar(50) ,
     `numero_medidor` varchar(30) ,
@@ -112,7 +109,8 @@ CREATE TABLE `fato_conta_energia` (
 
 -- Table: local_planta
 CREATE TABLE `local_planta` (
-    `local_planta_id` int  NOT NULL AUTO_INCREMENT,
+    `local_planta_id` int  AUTO_INCREMENT NOT NULL,
+
     `planta` varchar(2)  NOT NULL,
     CONSTRAINT `local_planta_pk` PRIMARY KEY (`local_planta_id`)
 );
@@ -127,7 +125,7 @@ CREATE TABLE `tempo` (
 
 -- Table: unidade_cliente
 CREATE TABLE `unidade_cliente` (
-    `unidade_cliente_id` int  NOT NULL AUTO_INCREMENT,
+    `unidade_cliente_id` int AUTO_INCREMENT NOT NULL,
     `cnpj` varchar(50)  NOT NULL,
     CONSTRAINT `unidade_cliente_pk` PRIMARY KEY (`unidade_cliente_id`)
 );
@@ -176,6 +174,4 @@ ALTER TABLE `fato_conta_energia` ADD CONSTRAINT `fato_conta_energia_tempo` FOREI
 -- Reference: fato_conta_energia_unidade_cliente (table: fato_conta_energia)
 ALTER TABLE `fato_conta_energia` ADD CONSTRAINT `fato_conta_energia_unidade_cliente` FOREIGN KEY `fato_conta_energia_unidade_cliente` (`unidade_cliente_id`)
     REFERENCES `unidade_cliente` (`unidade_cliente_id`);
-
--- End of file.
-
+    
