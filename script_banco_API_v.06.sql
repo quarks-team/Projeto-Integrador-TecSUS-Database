@@ -112,7 +112,7 @@ CREATE TABLE `fato_conta_energia` (
 
 -- Table: local_planta
 CREATE TABLE `local_planta` (
-    `local_planta_id` int  NOT NULL,
+    `local_planta_id` int  NOT NULL AUTO_INCREMENT,
     `planta` varchar(2)  NOT NULL,
     CONSTRAINT `local_planta_pk` PRIMARY KEY (`local_planta_id`)
 );
