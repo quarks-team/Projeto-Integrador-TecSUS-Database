@@ -57,7 +57,8 @@ CREATE TABLE `contrato_agua` (
     `nome_contrato_agua` varchar(100)  NOT NULL,
     `codigo_rgi` varchar(50)  NOT NULL,
     `hidrometro` varchar(30) ,
-    `fornecedor_agua` varchar(50) ,
+    `fornecedor_agua` varchar(50),
+    `cnpj` varchar(50),
     CONSTRAINT `contrato_agua_pk` PRIMARY KEY (`contrato_agua_id`)
 );
 
@@ -68,8 +69,9 @@ CREATE TABLE `contrato_energia` (
     `fornecedor_energia` varchar(50) ,
     `numero_medidor` varchar(30) ,
     `numero_instalacao` varchar(50)  NOT NULL,
-    `demanda_ponta` double(10,2) ,
-    `demanda_fora_ponta` double(10,2) ,
+    `demanda_ponta` float(10,2) ,
+    `demanda_fora_ponta` float(10,2) ,
+     `cnpj` varchar(50),
     CONSTRAINT `contrato_energia_pk` PRIMARY KEY (`contrato_energia_id`)
 );
 
@@ -91,8 +93,8 @@ CREATE TABLE `fato_conta_agua` (
 -- Table: fato_conta_energia
 CREATE TABLE `fato_conta_energia` (
     `unidade_cliente_id` int  NOT NULL,
-    `conta_energia_a_id` int  NOT NULL,
-    `conta_energia_b_id` int  NOT NULL,
+    `conta_energia_a_id` int  NULL,
+    `conta_energia_b_id` int  NULL,
     `tempo_id` int  NOT NULL,
     `contrato_energia_id` int  NOT NULL,
     `local_planta_id` int  NOT NULL,
@@ -102,9 +104,8 @@ CREATE TABLE `fato_conta_energia` (
     `demanda_pt` float(8,2) ,
     `demanda_fp_cap` float(8,2) ,
     `demanda_fp_ind` float(8,2) ,
-    `demanda_ponta` double(10,2) ,
-    `demanda_fora_ponta` double(10,2) ,
-    CONSTRAINT `fato_conta_energia_pk` PRIMARY KEY (`unidade_cliente_id`,`contrato_energia_id`,`tempo_id`,`conta_energia_b_id`,`conta_energia_a_id`,`local_planta_id`)
+    `demanda_ponta` float(10,2) ,
+    `demanda_fora_ponta` float(10,2)
 );
 
 -- Table: local_planta
@@ -116,7 +117,7 @@ CREATE TABLE `local_planta` (
 
 -- Table: tempo
 CREATE TABLE `tempo` (
-    `tempo_id` int  NOT NULL AUTO_INCREMENT,
+    `tempo_id` int AUTO_INCREMENT NOT NULL,
     `tempo_mes` varchar(2)  NOT NULL,
     `tempo_ano` varchar(4)  NOT NULL,
     CONSTRAINT `tempo_pk` PRIMARY KEY (`tempo_id`)
@@ -128,6 +129,7 @@ CREATE TABLE `unidade_cliente` (
     `cnpj` varchar(50)  NOT NULL,
     CONSTRAINT `unidade_cliente_pk` PRIMARY KEY (`unidade_cliente_id`)
 );
+
 
 -- foreign keys
 -- Reference: conta_agua (table: fato_conta_agua)
@@ -173,4 +175,8 @@ ALTER TABLE `fato_conta_energia` ADD CONSTRAINT `fato_conta_energia_tempo` FOREI
 -- Reference: fato_conta_energia_unidade_cliente (table: fato_conta_energia)
 ALTER TABLE `fato_conta_energia` ADD CONSTRAINT `fato_conta_energia_unidade_cliente` FOREIGN KEY `fato_conta_energia_unidade_cliente` (`unidade_cliente_id`)
     REFERENCES `unidade_cliente` (`unidade_cliente_id`);
-    
+
+-- unique key for fato conta_energia, not a PK because bill type a or b can be null(not both at the same row) 
+ALTER TABLE `fato_conta_energia`
+ADD CONSTRAINT `unique_fato_conta_energia`
+UNIQUE (`unidade_cliente_id`, `contrato_energia_id`, `tempo_id`, `conta_energia_b_id`, `conta_energia_a_id`, `local_planta_id`);
