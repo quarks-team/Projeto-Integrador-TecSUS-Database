@@ -7,7 +7,7 @@ CREATE TABLE alertas_consumo_agua (
     data_alerta DATE,
     consumo_atual DECIMAL(8, 2),
     media_trimestral DECIMAL(8, 2),
-    excesso_percentual DECIMAL(5, 2)
+    excesso_percentual DECIMAL(8, 2)
 );
 
 --Create function
@@ -51,7 +51,7 @@ BEGIN
 
     -- Verifica se o consumo atual é 30% maior que a média trimestral
     IF NEW.total_consumo_agua > media_trimestral * 1.30 THEN
-        INSERT INTO alertas_consumo (
+        INSERT INTO alertas_consumo_agua (
             contrato_agua_id,
             unidade_cliente_id,
             local_planta_id,
